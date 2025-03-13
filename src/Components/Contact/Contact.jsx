@@ -13,7 +13,7 @@ const Contact = () => {
 
 // enter your own web3 forms access key below
 
-    formData.append("access_key", "xxxxxxxxxxxxxxxxxxxxxxxx");
+    formData.append("access_key", "48f93888-7ed5-42a0-9deb-4cbd117f98d7");
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -56,6 +56,7 @@ const Contact = () => {
             </div>
         </div>
         <form onSubmit={onSubmit} className="contact-right">
+        <input type="hidden" name="access_key" value="48f93888-7ed5-42a0-9deb-4cbd117f98d7"/>
             <label htmlFor="">Your Name</label>
             <input type="text" placeholder='Enter your name' name='name' />
             <label htmlFor="">Your Email</label>
