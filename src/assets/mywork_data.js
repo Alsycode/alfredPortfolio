@@ -5,11 +5,18 @@ import project4_img from '../assets/nextBlog.png'
 import project5_img from '../assets/nft.png'
 import project6_img from '../assets/restaurantui.png'
 
+import project7_img from '../assets/LMS.png'
+
 const mywork_data = [
     {
         w_no:1,
         w_name:"MERN Chat App",
         w_img:project1_img
+    },
+     {
+        w_no:1,
+        w_name:"MERN Learning Management System",
+        w_img:project7_img
     },
     {
         w_no:2,
