@@ -38,14 +38,14 @@ const Hero = () => {
             </AnchorLink>
 
             {/* Replace href with your resume path or toggle to download */}
-            <a
-              className="btn btn-outline"
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              My resume
-            </a>
+          <a
+  className="btn btn-outline"
+  href="/resume-alf.pdf"
+  download="Alfred-Shyam-Resume.pdf"
+>
+  My resume
+</a>
+
           </div>
         </div>
       </div>
