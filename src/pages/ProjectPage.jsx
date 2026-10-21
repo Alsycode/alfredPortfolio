@@ -3,6 +3,8 @@ import React, { useMemo, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import mywork_data from "../assets/mywork_data";
 import "./ProjectPage.css";
+import HudButton from "../Components/ui/HudButton";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
 const ProjectPage = () => {
   const { id } = useParams();
@@ -45,12 +47,33 @@ const ProjectPage = () => {
   return (
     <main className="project-page">
       <div className="project-top">
-        <button className="back-btn" onClick={() => navigate(-1)} aria-label="Go back">
-          ← Back
-        </button>
+        <HudButton
+          size="sm"
+          label="Back"
+          icon={<ArrowLeft size={15} strokeWidth={2.5} />}
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+        />
       </div>
 
       <section className="project-grid">
+        {project.w_videos?.length ? (
+          <div className="carousel" style={{ display: "grid", gap: 16 }}>
+            {project.w_videos.map((src) => (
+              <video
+                key={src}
+                src={src}
+                poster={project.w_img}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                style={{ width: "100%", maxHeight: "70vh", borderRadius: 12, background: "#000" }}
+              />
+            ))}
+          </div>
+        ) : (
         <div className="carousel">
           <div className="carousel-viewport">
             <img
@@ -63,12 +86,22 @@ const ProjectPage = () => {
 
           {images.length > 1 && (
             <>
-              <button className="carousel-prev" onClick={prev} aria-label="Previous image">
-                ‹
-              </button>
-              <button className="carousel-next" onClick={next} aria-label="Next image">
-                ›
-              </button>
+              <HudButton
+                size="sm"
+                iconPosition="only"
+                icon={<ChevronLeft size={18} strokeWidth={2.5} />}
+                onClick={prev}
+                aria-label="Previous image"
+                frameClassName="carousel-prev"
+              />
+              <HudButton
+                size="sm"
+                iconPosition="only"
+                icon={<ChevronRight size={18} strokeWidth={2.5} />}
+                onClick={next}
+                aria-label="Next image"
+                frameClassName="carousel-next"
+              />
 
               <div className="carousel-dots" role="tablist" aria-label="Image thumbnails">
                 {images.map((_, i) => (
@@ -83,6 +116,7 @@ const ProjectPage = () => {
             </>
           )}
         </div>
+        )}
 
         <aside className="project-info">
           <h1 className="project-title">{project.w_name}</h1>
@@ -100,14 +134,10 @@ const ProjectPage = () => {
 
           <div className="project-links">
             {project.live && (
-              <a className="btn primary" href={project.live} target="_blank" rel="noreferrer">
-                View live
-              </a>
+              <HudButton size="sm" label="View live" href={project.live} target="_blank" rel="noreferrer" />
             )}
             {project.code && (
-              <a className="btn outline" href={project.code} target="_blank" rel="noreferrer">
-                View code
-              </a>
+              <HudButton size="sm" label="View code" href={project.code} target="_blank" rel="noreferrer" />
             )}
           </div>
         </aside>

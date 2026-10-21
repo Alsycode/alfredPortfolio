@@ -1,40 +1,52 @@
 import React, { useRef, useState } from 'react'
 import './Navbar.css'
-import logo from '../../assets/logo.svg'
-import underline from '../../assets/nav_underline.svg'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import HudButton from '../ui/HudButton'
 import menu_open from '../../assets/menu_open.svg'
 import menu_close from '../../assets/menu_close.svg'
 
+const links = [
+  { key: 'home', label: 'Home', href: '#home', offset: 100 },
+  { key: 'about', label: 'About Me', href: '#about', offset: 50 },
+  { key: 'work', label: 'Portfolio', href: '#work', offset: 50 },
+  { key: 'contact', label: 'Contact', href: '#contact', offset: 50 },
+]
+
 const Navbar = () => {
-  
+
   const [menu,setMenu] = useState("home");
   const menuRef = useRef();
 
   const openMenu = () => {
-    menuRef.current.style.right="0";
+    menuRef.current.classList.add("open");
   }
   const closeMenu = () => {
-    menuRef.current.style.right="-300px";
+    menuRef.current.classList.remove("open");
   }
 
   return (
     <div className='navbar'>
-<h2 style={{ fontSize: '40px' }}>
-  alfre
-  <span style={{ color: '#C443A1' }}>D</span>
-</h2>
+      <a className='nav-logo' href='#home' aria-label='alfreD home'>
+        <span className='nav-logo__bracket'>[</span>
+        <span className='nav-logo__text'>alfre<span className='nav-logo__d'>D</span></span>
+        <span className='nav-logo__bracket'>]</span>
+        <span className='nav-logo__status' aria-hidden='true'>SYS.ONLINE</span>
+      </a>
 
       <img src={menu_open} onClick={openMenu} alt="" className='nav-mob-open' />
-      <ul ref={menuRef} className="nav-menu">
+      <ul ref={menuRef} className="nav-menu" onClick={(e)=>{ if(e.target.closest("a")) closeMenu(); }}>
         <img src={menu_close} onClick={closeMenu} alt="" className="nav-mob-close" />
-        <li><AnchorLink className='anchor-link' href='#home' offset={100}><p onClick={()=>setMenu("home")}>Home</p></AnchorLink>{menu==="home"?<img src={underline} alt=''/>:<></>}</li>
-        <li><AnchorLink className='anchor-link' offset={50} href='#about'><p onClick={()=>setMenu("about")}>About Me</p></AnchorLink>{menu==="about"?<img src={underline} alt=''/>:<></>}</li>
-        {/* <li><AnchorLink className='anchor-link' offset={50} href='#services'><p onClick={()=>setMenu("services")}>Services</p></AnchorLink>{menu==="services"?<img src={underline} alt=''/>:<></>}</li> */}
-        <li><AnchorLink className='anchor-link' offset={50} href='#work'><p onClick={()=>setMenu("work")}>Portfolio</p></AnchorLink>{menu==="work"?<img src={underline} alt=''/>:<></>}</li>
-        <li><AnchorLink className='anchor-link' offset={50} href='#contact'><p onClick={()=>setMenu("contact")}>Contact</p></AnchorLink>{menu==="contact"?<img src={underline} alt=''/>:<></>}</li>
+        {links.map((l, i) => (
+          <li key={l.key} className={menu === l.key ? 'active' : ''}>
+            <AnchorLink className='anchor-link' href={l.href} offset={l.offset}>
+              <p onClick={() => setMenu(l.key)}>
+                <span className='nav-idx'>0{i + 1}</span>{l.label}
+              </p>
+            </AnchorLink>
+          </li>
+        ))}
       </ul>
-      <div className="nav-connect"><AnchorLink className='anchor-link' offset={50} href='#contact'>Connect With Me</AnchorLink></div>
+      <div className="nav-connect"><HudButton size="sm" label="Connect with me" as={AnchorLink} offset={50} href="#contact" /></div>
     </div>
   )
 }

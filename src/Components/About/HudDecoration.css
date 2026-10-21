@@ -1,0 +1,155 @@
+/* ---------- index rule ---------- */
+.hud-index{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--label);
+}
+.hud-index__slashes{ color: var(--neon-magenta); }
+.hud-index__num{ color: var(--text); }
+.hud-index__rule{
+  width: clamp(80px, 16vw, 220px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--neon-purple), rgba(139, 92, 246, 0.05));
+}
+.hud-index__dot{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--neon-magenta);
+  box-shadow: 0 0 8px var(--neon-magenta);
+}
+.hud-index__label{
+  color: var(--text);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------- angular chip ---------- */
+.hud-tag{
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px 10px 13px;
+  border: 1px solid var(--hud-border);
+  border-left-color: rgba(217, 70, 239, 0.55);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.08), rgba(10, 8, 14, 0.4));
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.75;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.hud-tag:hover{
+  border-color: rgba(217, 70, 239, 0.5);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.14), rgba(10, 8, 14, 0.4));
+}
+.hud-tag__dot{
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--neon-magenta);
+  box-shadow: 0 0 10px var(--neon-magenta);
+  animation: hudPulse 3.2s ease-in-out infinite;
+}
+.hud-tag__lines{ display: flex; flex-direction: column; }
+
+/* ---------- vertical meter ---------- */
+.hud-meter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hud-meter__seg{
+  width: 18px;
+  height: 5px;
+  background: rgba(168, 145, 220, 0.16);
+  clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
+}
+.hud-meter__seg.is-on{
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-magenta));
+  box-shadow: 0 0 9px rgba(217, 70, 239, 0.45);
+  animation: hudSegGlow 4s ease-in-out infinite;
+  animation-delay: calc(var(--seg-i) * 0.12s);
+}
+.hud-meter__caret{
+  margin-top: 8px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--neon-magenta);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  filter: drop-shadow(0 0 5px rgba(217, 70, 239, 0.7));
+}
+
+/* ---------- dot matrix ---------- */
+.hud-dots{
+  display: grid;
+  grid-template-columns: repeat(3, 4px);
+  gap: 7px;
+}
+.hud-dots span{
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(217, 70, 239, 0.5);
+  animation: hudPulse 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--dot-i) * 0.14s);
+}
+
+/* ---------- rotated edge label ---------- */
+.hud-vlabel{
+  writing-mode: vertical-rl;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  color: rgba(190, 180, 220, 0.3);
+  text-transform: uppercase;
+}
+
+/* ---------- diagonal accents ---------- */
+.hud-arrow{
+  width: 90px;
+  height: 90px;
+  overflow: visible;
+}
+
+/* ---------- ticked rule ---------- */
+.hud-ticks{
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 8px;
+}
+.hud-ticks span{
+  width: 1px;
+  height: 4px;
+  background: rgba(190, 180, 220, 0.3);
+}
+.hud-ticks span:nth-child(3n){ height: 8px; background: rgba(217, 70, 239, 0.6); }
+
+@keyframes hudPulse{
+  0%, 100%{ opacity: 1; }
+  50%{ opacity: 0.35; }
+}
+
+@keyframes hudSegGlow{
+  0%, 100%{ opacity: 1; }
+  50%{ opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hud-tag__dot,
+  .hud-dots span,
+  .hud-meter__seg.is-on{
+    animation: none !important;
+  }
+}

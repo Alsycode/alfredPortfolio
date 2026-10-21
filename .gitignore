@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# reddit idea miner
+scripts/reddit_ideas/.env
+scripts/reddit_ideas/data/
+__pycache__/

@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Share+Tech+Mono&display=swap");
+
+:root{
+  --font-display: "Orbitron", "Outfit", sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, SFMono-Regular, monospace;
+  --cream: #FBDBAF;
+  --cream-muted: rgba(251, 219, 175, 0.72);
+  --cream-label: rgba(251, 219, 175, 0.48);
+  --orange: #DF8908;
+  --purple: #B415FF;
+  --card: rgba(20, 16, 14, 0.6);
+  --card-border: rgba(251, 219, 175, 0.14);
+}
+
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+img, video, svg{
+  max-width: 100%;
+}
 *{
   margin: 0;
   padding: 0;
@@ -5,8 +27,9 @@
 }
 body{
   min-height: 100vh;
+  overflow-x: clip;
   background: #161513;
-  color: white;
+  color: var(--cream);
   font-family: 'outfit';
 }
 .title-box{
@@ -14,8 +37,11 @@ body{
 }
 .title-box h1{
   padding: 0px 30px;
-  font-size: 60px;
+  font-size: clamp(36px, 7vw, 60px);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--cream);
 }
 .title-box img{
   width: 160px;

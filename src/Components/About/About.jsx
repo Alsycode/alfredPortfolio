@@ -1,51 +1,41 @@
-import React from 'react'
-import './About.css'
-import theme_pattern from '../../assets/theme_pattern.svg'
-import profile_img from '../../assets/profile.jpg'
+import React from "react";
+import { motion } from "framer-motion";
+import "./About.css";
+import CyberPortrait from "./CyberPortrait";
+import AboutContent from "./AboutContent";
+import SkillsPanel from "./SkillsPanel";
+import { HudDotGrid, HudIndex, HudVerticalLabel } from "./HudDecoration";
+import { stagger, viewportOnce } from "./hudMotion";
 
+const About = () => (
+  <motion.section
+    id="about"
+    className="about"
+    aria-labelledby="about-heading"
+    initial="hidden"
+    whileInView="show"
+    viewport={viewportOnce}
+    variants={stagger(0.12)}
+  >
+    <span className="about__bg" aria-hidden="true" />
 
-const About = () => {
-  return (
-    <div id='about' className='about'>
-      <div className="title-box">
-        <h1>About me</h1>
-        <img src={theme_pattern} alt="" />
+    <div className="about__inner">
+      <HudIndex index="03" label="About Me" className="about__index" />
+
+      <div className="about__grid">
+        <CyberPortrait />
+
+        <div className="about__column">
+          <AboutContent />
+        </div>
+
+        <SkillsPanel />
       </div>
-      <div className="about-sections">
-        <div className="about-left">
-            <img src={profile_img} alt="" />
-        </div>
-        <div className="about-right">
-            <div className="about-para">
-                <p>I am an experienced Frontend Developer with over a decade of professional expertise in the field. Throughout my career, I have had the privilege of collaborating with prestigious organizations, contributing to their success and growth.</p>
-                <p>My passion for frontend development is not only reflected in my extensive experience but also in the enthusiasm and dedication I bring to each project.</p>
-            </div>
-            <div className="about-skills">
-                <div className="about-skill"><p>HTML & CSS</p><hr style={{width:"50%"}} /></div>
-                <div className="about-skill"><p>React JS</p><hr style={{width:"70%"}} /></div>
-                <div className="about-skill"><p>JavaScript</p><hr style={{width:"60%"}} /></div>
-                <div className="about-skill"><p>Next JS</p><hr style={{width:"50%"}} /></div>
-            </div>
-        </div>
-      </div>
-      {/* <div className="about-achievements">
-        <div className="about-achievement">
-            <h1>10+</h1>
-            <p>YEARS OF EXPERIENCE</p>
-        </div>
-        <hr />
-        <div className="about-achievement">
-            <h1>90+</h1>
-            <p>PROJECTS COMPLETED</p>
-        </div>
-        <hr />
-        <div className="about-achievement">
-            <h1>15+</h1>
-            <p>HAPPY CLIENTS</p>
-        </div>
-      </div> */}
     </div>
-  )
-}
 
-export default About
+    <HudVerticalLabel text="Expertise" className="about__vlabel" />
+    <HudDotGrid className="about__dots" />
+  </motion.section>
+);
+
+export default About;

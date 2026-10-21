@@ -1,0 +1,63 @@
+.hud-frame{
+  --hud-corner: 20px;
+  --hud-cut: 8px;
+  position: relative;
+  padding: 1px;
+  clip-path: polygon(
+    var(--hud-corner) 0,
+    calc(100% - var(--hud-cut)) 0,
+    100% var(--hud-cut),
+    100% calc(100% - var(--hud-corner)),
+    calc(100% - var(--hud-corner)) 100%,
+    var(--hud-cut) 100%,
+    0 calc(100% - var(--hud-cut)),
+    0 var(--hud-corner)
+  );
+  transition: filter 0.3s ease;
+}
+
+.hud-frame--magenta{
+  background: linear-gradient(
+    135deg,
+    var(--neon-magenta) 0%,
+    var(--neon-purple) 28%,
+    rgba(139, 92, 246, 0.16) 52%,
+    var(--neon-orange) 88%,
+    var(--neon-magenta) 100%
+  );
+}
+
+.hud-frame--purple{
+  background: linear-gradient(
+    160deg,
+    var(--neon-purple) 0%,
+    rgba(139, 92, 246, 0.2) 45%,
+    var(--neon-magenta) 100%
+  );
+}
+
+.hud-frame--dim{
+  background: linear-gradient(
+    135deg,
+    rgba(217, 70, 239, 0.55) 0%,
+    rgba(139, 92, 246, 0.14) 45%,
+    rgba(255, 138, 61, 0.45) 100%
+  );
+}
+
+.hud-frame__inner{
+  position: relative;
+  display: block;
+  height: 100%;
+  background: var(--surface);
+  clip-path: polygon(
+    calc(var(--hud-corner) - 1px) 0,
+    calc(100% - var(--hud-cut) + 1px) 0,
+    100% calc(var(--hud-cut) - 1px),
+    100% calc(100% - var(--hud-corner) + 1px),
+    calc(100% - var(--hud-corner) + 1px) 100%,
+    calc(var(--hud-cut) - 1px) 100%,
+    0 calc(100% - var(--hud-cut) + 1px),
+    0 calc(var(--hud-corner) - 1px)
+  );
+}

@@ -1,0 +1,111 @@
+/* shared HUD button: angular frame + travelling beam, same look as the
+   "View all projects" button everywhere it's reused */
+.hud-btn__frame{
+  --neon-magenta: #d946ef;
+  --neon-purple: #8b5cf6;
+  --neon-orange: #ff8a3d;
+  --surface: #0d0b13;
+  --hud-text: #eae7f4;
+  display: inline-flex;
+  position: relative;
+  filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.3));
+  transition: filter 0.3s ease;
+}
+.hud-btn__frame::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 62%,
+    rgba(255, 122, 217, 0.5) 72%,
+    #ff7ad9 82%,
+    #d946ef 89%,
+    rgba(139, 92, 246, 0.5) 95%,
+    transparent 100%
+  );
+  animation: hudBeamSpin 4.5s linear infinite;
+  pointer-events: none;
+}
+.hud-btn__frame:hover{
+  filter: drop-shadow(0 0 18px rgba(217, 70, 239, 0.55));
+}
+.hud-btn__frame:hover::before{ animation-duration: 2.2s; }
+
+@keyframes hudBeamSpin{
+  to{ transform: rotate(1turn); }
+}
+
+/* the frame is a flex container (for shrink-to-fit sizing), which makes its
+   lone child a flex item — without flex-grow it would stay content-sized
+   even when an ancestor stretches the frame (e.g. flex:1 button rows),
+   leaving the gradient "border" background exposed as a solid block */
+.hud-btn__frame > .hud-frame__inner{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hud-btn{
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hud-text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.hud-btn:hover{ color: #fff; }
+.hud-btn:disabled{ opacity: 0.45; cursor: not-allowed; }
+
+.hud-btn__icon{
+  display: grid;
+  place-items: center;
+  color: var(--neon-magenta);
+  transition: transform 0.3s ease;
+}
+.hud-btn:hover .hud-btn__icon{ transform: translateX(4px); }
+
+.hud-btn__label{ line-height: 1.4; }
+
+/* sizes */
+.hud-btn--lg{
+  gap: 26px;
+  min-height: 72px;
+  padding: 16px 32px;
+  font-size: 14px;
+}
+.hud-btn--md{
+  gap: 16px;
+  min-height: 50px;
+  padding: 13px 26px;
+  font-size: 12.5px;
+}
+.hud-btn--sm{
+  gap: 10px;
+  min-height: 40px;
+  padding: 9px 18px;
+  font-size: 11px;
+}
+
+/* icon-only (back / carousel arrows) */
+.hud-btn--icon-only{ padding: 0; gap: 0; }
+.hud-btn--icon-only.hud-btn--lg{ min-width: 72px; }
+.hud-btn--icon-only.hud-btn--md{ min-width: 50px; }
+.hud-btn--icon-only.hud-btn--sm{ min-width: 40px; }
+.hud-btn--icon-only .hud-btn__icon{ font-size: 18px; }
+.hud-btn--icon-only:hover .hud-btn__icon{ transform: none; }
+
+@media (prefers-reduced-motion: reduce){
+  .hud-btn__frame::before{ animation: none !important; }
+  .hud-btn__icon{ transition: none !important; }
+}

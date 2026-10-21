@@ -2,8 +2,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+import ScrollToTop from "./Components/ScrollToTop";
 import Navbar from "./Components/Navbar/Navbar";
 import Hero from "./Components/Hero/Hero";
+import FloatingSkills from "./Components/FloatingSkills/FloatingSkills";
 import About from "./Components/About/About";
 import Services from "./Components/Services/Services";
 import MyWork from "./Components/MyWork/MyWork";
@@ -14,6 +16,7 @@ import ProjectPage from "./pages/ProjectPage"; // <-- new page
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route
@@ -21,11 +24,12 @@ const App = () => {
           element={
             <>
               <Hero />
+              <FloatingSkills />
               <About />
               {/* <Services/> */}
               <MyWork />
               <Contact />
-          
+
             </>
           }
         />

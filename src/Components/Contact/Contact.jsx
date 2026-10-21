@@ -1,5 +1,6 @@
 import React from 'react'
 import './Contact.css'
+import HudButton from '../ui/HudButton'
 import theme_pattern from '../../assets/theme_pattern.svg'
 import mail_icon from '../../assets/mail_icon.svg'
 import location_icon from '../../assets/location_icon.svg'
@@ -10,11 +11,6 @@ const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
-// enter your own web3 forms access key below
-
-    formData.append("access_key", "48f93888-7ed5-42a0-9deb-4cbd117f98d7");
-
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
@@ -27,22 +23,27 @@ const Contact = () => {
       body: json
     }).then((res) => res.json());
 
-    
+
       alert(res.message);
-    
+
   };
 
 
   return (
     <div id='contact' className='contact'>
-      <div className="title-box">
-        <h1>Get in touch</h1>
+      <div className="contact-bg" aria-hidden="true" />
+      <div className="title-box contact-head">
+        <span className="contact-tag">// 03 — OPEN_CHANNEL</span>
+        <h1>
+          <span className="contact-h-light">GET IN</span>{" "}
+          <span className="contact-h-neon" data-text="TOUCH">TOUCH</span>
+        </h1>
         <img src={theme_pattern} alt="" />
       </div>
       <div className="contact-section">
         <div className="contact-left">
-            <h1>Let's talk</h1>
-            <p>I'm currently avaliable to take on new projects, so feel free to send me a message about anything that you want me to work on. You can contact anytime.</p>
+            <h2 className="contact-lets">&gt; LET'S_TALK<span className="contact-cursor">_</span></h2>
+            <p>I'm currently available to take on new projects, so feel free to send me a message about anything that you want me to work on. You can contact anytime.</p>
             <div className="contact-details">
                 <div className="contact-detail">
                     <img src={mail_icon} alt="" /> <p>shyamalfred@gmail.com</p>
@@ -57,13 +58,13 @@ const Contact = () => {
         </div>
         <form onSubmit={onSubmit} className="contact-right">
         <input type="hidden" name="access_key" value="48f93888-7ed5-42a0-9deb-4cbd117f98d7"/>
-            <label htmlFor="">Your Name</label>
+            <label htmlFor="">&gt; USER_NAME</label>
             <input type="text" placeholder='Enter your name' name='name' />
-            <label htmlFor="">Your Email</label>
+            <label htmlFor="">&gt; USER_EMAIL</label>
             <input type="email" placeholder='Enter your email' name='email' />
-            <label htmlFor="">Write your message here</label>
+            <label htmlFor="">&gt; MESSAGE_PAYLOAD</label>
             <textarea name="message" rows="8" placeholder='Enter your message'></textarea>
-            <button type='submit' className="contact-submit">Submit now</button>
+            <HudButton label="Transmit" type="submit" />
         </form>
       </div>
     </div>
