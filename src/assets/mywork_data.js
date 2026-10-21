@@ -65,8 +65,20 @@ import mg8 from '../assets/miniGreens/8.webp'
 import mg9 from '../assets/miniGreens/9.webp'
 
 import portfolio_poster from '../assets/profile-cyber.webp'
+import riverine_img from '../assets/riverine-ai.jpg'
 
 const mywork_data = [
+  {
+    w_no: 0,
+    w_name: "riverine.ai",
+    w_img: riverine_img,
+    w_description:
+      "A full-viewport video hero landing page for an eco-conscious AI brand, built pixel-precise from a detailed design spec: custom @font-face type system, scaling layout units, layered video shading, animated SVG logo mark and a Web Animations API entrance sequence, plus full responsive breakpoints for mobile, tablet and short-landscape devices. Extended into a complete landing page with philosophy, nature, work, earth, news and partner sections.",
+    tags: ["HTML", "CSS", "JavaScript", "Animation", "Responsive", "Live"],
+    live: "https://alsycode.github.io/riverine-ai/",
+    code: "https://github.com/Alsycode/riverine-ai",
+  },
+
   {
     w_no: 0,
     w_name: "This Portfolio",
