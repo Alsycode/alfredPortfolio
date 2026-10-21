@@ -310,6 +310,22 @@ const mywork_data = [
     code: "",
   },
 
+  {
+    w_no: 18,
+    w_name: "Planet Jumping",
+    w_img: "/port8/01-hero-mars.jpg",
+    w_images: [
+      "/port8/01-hero-mars.jpg",
+      "/port8/02-earth.jpg",
+      "/port8/03-venus.jpg",
+    ],
+    w_description:
+      "An immersive, canvas-driven space portal landing experience. A rounded-window portal tilts toward the pointer over screen-locked video, cinematic transitions carry you from Mars to Earth to Venus, with a custom cursor and a video preloader sequence. Single self-contained HTML file, no build step.",
+    tags: ["Canvas", "JavaScript", "WebGL-style FX", "Live"],
+    live: "https://planet-jumping-eight.vercel.app/",
+    code: "https://github.com/Alsycode/planet-jumping",
+  },
+
 ];
 
 export default mywork_data;
